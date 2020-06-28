@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -16,7 +17,7 @@ after_success:
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Tale those images and push them to docker hub
-  - docker push -t mradman123/multi-client
-  - docker push -t mradman123/multi-nginx
-  - docker push -t mradman123/multi-server
-  - docker push -t mradman123/multi-worker
+  - docker push mradman123/multi-client
+  - docker push mradman123/multi-nginx
+  - docker push mradman123/multi-server
+  - docker push mradman123/multi-worker
