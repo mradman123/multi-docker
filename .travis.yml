@@ -4,20 +4,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t mradman123/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mradman/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true mradman123/react-test npm test
+  - docker run -e CI=true mradman/react-test npm test
 
 after_success:
-  - docker build -t mradman123/multi-client ./client
-  - docker build -t mradman123/multi-nginx ./nginx
-  - docker build -t mradman123/multi-server ./server
-  - docker build -t mradman123/multi-worker ./worker
+  - docker build -t mradman/multi-client ./client
+  - docker build -t mradman/multi-nginx ./nginx
+  - docker build -t mradman/multi-server ./server
+  - docker build -t mradman/multi-worker ./worker
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Tale those images and push them to docker hub
-  - docker push mradman123/multi-client
-  - docker push mradman123/multi-nginx
-  - docker push mradman123/multi-server
-  - docker push mradman123/multi-worker
+  - docker push mradman/multi-client
+  - docker push mradman/multi-nginx
+  - docker push mradman/multi-server
+  - docker push mradman/multi-worker
