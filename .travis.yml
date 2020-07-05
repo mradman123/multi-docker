@@ -21,3 +21,16 @@ after_success:
   - docker push mradman/multi-nginx
   - docker push mradman/multi-server
   - docker push mradman/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "eu-west-3"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-3-976230332130"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
